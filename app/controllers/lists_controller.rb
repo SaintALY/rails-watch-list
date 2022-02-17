@@ -1,15 +1,41 @@
 class ListsController < ApplicationController
-    def create
-        @list = list.new(list_params)
-    
-        respond_to do |format|
-          if @list.save
-            format.html { redirect_to list_url(@list), notice: "list was successfully created." }
-            format.json { render :show, status: :created, location: @list }
-          else
-            format.html { render :new, status: :unprocessable_entity }
-            format.json { render json: @list.errors, status: :unprocessable_entity }
-          end
-        end
+  before_action :set_list, only: [ :show, :edit, :update, :destroy ]
+
+  # GET /lists or /lists.json
+  def index
+    @lists = List.all
+  end
+
+  def create
+    @list = List.new(list_params)
+
+    if @list.save
+      redirect_to @list, notice: 'List was successfully created.'
+    else
+      render :new
     end
+  end
+
+  def new
+    @list = List.new
+  end
+
+  def edit
+  end
+
+  def show
+  end
+
+  def update
+  end
+
+  def destroy
+  end
+
+  private
+
+  def list_params
+    params.require(:list)
+  end
+
 end
