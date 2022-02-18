@@ -5,7 +5,7 @@ class MoviesController < ApplicationController
   def index
     @movies = Movie.all
   end 
-
+ 
   # GET /movies/1 or /movies/1.json
   def show
   end
